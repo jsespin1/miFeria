@@ -5,10 +5,9 @@
 	      <tr>
 	        <th>Product Name</th>
 	        <th>Unit</th>
+	        <th>Quantity</th>
 	        <th>Product Price</th>
 	        <th>In Box Price</th>
-	        <th>Quantity</th>
-	        <th>ID</th>
 	      </tr>
 	    </thead>
 	    <tbody>
@@ -16,10 +15,9 @@
 		    	<tr>
 			        <td><%= oi.product.name %></td>
 			        <td><%= oi.product.unit %></td>
-			        <td><%= oi.product.price %></td>
-			        <td><%= oi.unit_price %></td>
 			        <td><%= best_in_place oi, :quantity, :as => :input%></td>
-			        <td><%= oi.id %></td>
+			        <td><%= oi.product.price %></td>
+			        <td><%= best_in_place oi, :unit_price, :as => :input %></td>
 			    </tr>
 			<% end %>
 		</tbody>
@@ -29,6 +27,6 @@
 
 
 <div class="form-actions" style="margin-left:0px;border-style:none;border-radius: 0%/100%">
-      <%= link_to "Back", edit_admin_box_path(@box),:class=>'btn' %> 
+      <%= link_to "Back", edit_admin_box_path(@box),:class=>'button' %> 
     
 </div>

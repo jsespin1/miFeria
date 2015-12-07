@@ -1,6 +1,7 @@
 ActiveAdmin.register Box do
   #actions :create, :edit, :update, :add_item
   permit_params :name, :tipo, :price, :weight, :active
+  remove_filter :box_order_items
 
   index :as => :table do
     column :name
@@ -52,6 +53,10 @@ ActiveAdmin.register Box do
    	end
     actions
   end
+
+   action_item only: :edit do
+	  link_to 'Especificación Box', edit_box_products_admin_box_path
+	end
 
 
   member_action :add_item do

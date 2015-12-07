@@ -1,7 +1,8 @@
 class OrderItem < ApplicationRecord
   belongs_to :product
   belongs_to :order
-  has_and_belongs_to_many :boxes
+  has_many :box_order_items
+  has_many :boxes, :through => :box_order_items
 
   validates :quantity, presence: true, numericality: { greater_than: 0 }
   validate :product_present

@@ -7,10 +7,16 @@ class OrderItemsController < ApplicationController
   end
 
   def update
-  	@order = current_order
-    @order_item = @order.order_items.find(params[:id])
-    @order_item.update_attributes(order_item_params)
-    @order_items = @order.order_items
+    @order_item = OrderItem.find(params[:id])
+    respond_to do |format|
+      if @order_item.update_attributes(order_item_params)
+        format.html { redirect_to(@order_item, :notice => 'User was successfully updated.') }
+        format.json { respond_with_bip(@order_item) }
+      else
+        format.html { render :action => "edit" }
+        format.json { respond_with_bip(@order_item) }
+      end
+    end
   end
 
   def destroy
@@ -23,7 +29,7 @@ class OrderItemsController < ApplicationController
 private
 
   def order_item_params
-    params.require(:order_item).permit(:quantity, :product_id)
+    params.require(:order_item).permit(:quantity, :product_id, :unit_price)
   end
   
 end
