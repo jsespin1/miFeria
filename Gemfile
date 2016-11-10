@@ -33,9 +33,10 @@ gem 'jbuilder', '~> 2.5'
 #Utilities
  gem "awesome_print", require:"ap"
 
- #Admin Resources
-gem 'activeadmin', '1.0.0.pre4'
-gem 'inherited_resources', github: 'activeadmin/inherited_resources'
+ #User-Admin Resources
+ gem 'devise'
+ gem 'activeadmin', '1.0.0.pre4'
+ gem 'inherited_resources', github: 'activeadmin/inherited_resources'
 #gem 'inherited_resources'
 
 group :development, :test do
