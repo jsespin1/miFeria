@@ -21,33 +21,35 @@ ActiveAdmin.register Box do
       input :active
     end
     #Se inicializan variables de productos en caja y para agregar a caja
-    @box = Box.find(params[:id])
-    items_in_box = @box.order_items
-    @products_in_box = Array.new
-    items_in_box.each do |i|
-    	@products_in_box.push(i.product)
-    end
-    @availables = Array.new
-    all = Product.where(active: true)
-    all.each do |p|
-    	unless @products_in_box.include?(p)
-		   @availables.push(p)
-		end
-    end
+    if action_name.to_s.eql? 'edit'
+    	@box = Box.find(params[:id])
+	    items_in_box = @box.order_items
+	    @products_in_box = Array.new
+	    items_in_box.each do |i|
+	    	@products_in_box.push(i.product)
+	    end
+	    @availables = Array.new
+	    all = Product.where(active: true)
+	    all.each do |p|
+	    	unless @products_in_box.include?(p)
+			   @availables.push(p)
+			end
+	    end
 
-    panel 'Productos Incluidos', :class => "already_in_box" do
-      @products_in_box.each do |p|
-      	f.label p.name, :class=>"form-control remove-product-box", :'data-product-id'=>p.id.to_s,
-      	  				:id=>p.name
-      end
-    end
+	    panel 'Productos Incluidos', :class => "already_in_box" do
+	      @products_in_box.each do |p|
+	      	f.label p.name, :class=>"form-control remove-product-box", :'data-product-id'=>p.id.to_s,
+	      	  				:id=>p.name
+	      end
+	    end
 
-    panel 'Catálogo', :class => "not_in_box" do
-      @availables.each do |a|
-      	f.label a.name, :class=>"form-control add-product-box", :'data-product-id'=>a.id.to_s,
-      					:id=>a.name
-      end
-    end
+	    panel 'Catálogo', :class => "not_in_box" do
+	      @availables.each do |a|
+	      	f.label a.name, :class=>"form-control add-product-box", :'data-product-id'=>a.id.to_s,
+	      					:id=>a.name
+	      end
+	    end
+   	end
     actions
   end
 
