@@ -7,6 +7,10 @@ Rails.application.routes.draw do
   resources :boxes
 
   resource :cart
+
+  get 'admin/boxes/add_item'
+
+  get 'box/remove_item'
   
   get 'order_items/create'
 
