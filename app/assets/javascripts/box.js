@@ -8,7 +8,7 @@ $(document).on('click', ".add-product-box", function(ev){
 
 	ev.preventDefault();
 	var sourceUrl = 'add_item';
-	
+
 	//Ahora hacemos el llamado AJAX a esta dirección, hay dos sintaxis para método .ajax
 	$.ajax({
 		url: sourceUrl,
@@ -30,12 +30,12 @@ $(document).on('click', ".add-product-box", function(ev){
 	//Ahora funcion que construye HTML en base a lo rescatado por AJAX
 	var addItemTagBox = function(productInfo) {
 		$add = $('<label class="form-control remove-product-box"' + 
-				' data-product-id=' + productInfo.id + ' id=' + productInfo.name +
+				' data-product-id=' + productInfo.id + " id=product-" + productInfo.id +
 				" for=box_" + productInfo.name + ">" + productInfo.name +
 				'</label>');
 
 
-		$('#'+productInfo.name).remove();
+		$('#product-'+productInfo.id).remove();
 		$('.already_in_box').find('.panel_contents').append($add);
 	}
 });
@@ -71,11 +71,11 @@ $(document).on('click', ".remove-product-box", function(ev){
 	//Ahora funcion que construye HTML en base a lo rescatado por AJAX
 	var removeItemTagBox = function(productInfo) {
 		$add = $('<label class="form-control add-product-box"' + 
-				' data-product-id=' + productInfo.id + ' id=' + productInfo.name +
+				' data-product-id=' + productInfo.id + ' id=product-' + productInfo.id +
 				" for=box_" + productInfo.name + ">" + productInfo.name +
 				'</label>');
 
-		$('#'+productInfo.name).remove();
+		$('#product-'+productInfo.id).remove();
 		$('.not_in_box').find('.panel_contents').append($add);
 	}
 });

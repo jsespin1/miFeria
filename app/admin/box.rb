@@ -39,14 +39,14 @@ ActiveAdmin.register Box do
 	    panel 'Productos Incluidos', :class => "already_in_box" do
 	      @products_in_box.each do |p|
 	      	f.label p.name, :class=>"form-control remove-product-box", :'data-product-id'=>p.id.to_s,
-	      	  				:id=>p.name
+	      	  				:id=>"product-" + p.id.to_s
 	      end
 	    end
 
 	    panel 'Catálogo', :class => "not_in_box" do
 	      @availables.each do |a|
 	      	f.label a.name, :class=>"form-control add-product-box", :'data-product-id'=>a.id.to_s,
-	      					:id=>a.name
+	      					:id=>"product-" + a.id.to_s
 	      end
 	    end
    	end
@@ -61,7 +61,6 @@ ActiveAdmin.register Box do
 	#Las OrderItems requieren referencia a la orden, en este caso se recurrirá a una orden auxiliar
 	order_item = OrderItem.create! product: product, order: Order.first, quantity: 1
 	box.order_items << order_item
-	box.save
 	respond_to do |format|
       format.html {}
       format.json do 
@@ -84,6 +83,7 @@ ActiveAdmin.register Box do
 		end
 	end
 	box.order_items.delete(order_item)
+	order_item.delete
 	respond_to do |format|
       format.html {}
       format.json do 
@@ -99,7 +99,7 @@ ActiveAdmin.register Box do
   member_action :edit_box_products do
     @box = Box.find(params[:'id'])
     @order_items = @box.order_items
- 
+
     # This will render app/views/admin/posts/comments.html.erb
   end
 

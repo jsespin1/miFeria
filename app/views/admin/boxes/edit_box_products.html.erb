@@ -8,6 +8,7 @@
 	        <th>Product Price</th>
 	        <th>In Box Price</th>
 	        <th>Quantity</th>
+	        <th>ID</th>
 	      </tr>
 	    </thead>
 	    <tbody>
@@ -18,14 +19,12 @@
 			        <td><%= oi.product.price %></td>
 			        <td><%= oi.unit_price %></td>
 			        <td><%= best_in_place oi, :quantity, :as => :input%></td>
+			        <td><%= oi.id %></td>
 			    </tr>
 			<% end %>
 		</tbody>
 
 	</table>
-	<% @order_items.each do |oi| %>
-
-	<% end %>
 </div>
 
 
