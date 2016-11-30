@@ -31,7 +31,10 @@ gem 'jbuilder', '~> 2.5'
 # gem 'capistrano-rails', group: :development
 
 #Utilities
+ gem 'bootstrap-sass', '~> 3.3', '>= 3.3.5.1'
+ gem 'autoprefixer-rails'
  gem "awesome_print", require:"ap"
+ gem 'best_in_place', '~> 3.0.3'
 
  #User-Admin Resources
  gem 'devise'

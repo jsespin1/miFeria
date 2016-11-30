@@ -5,18 +5,12 @@ Rails.application.routes.draw do
   devise_for :users
   resources :products
   resources :boxes
-
+  resources :order_items
   resource :cart
 
   get 'admin/boxes/add_item'
 
   get 'box/remove_item'
-  
-  get 'order_items/create'
-
-  get 'order_items/update'
-
-  get 'order_items/destroy'
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 

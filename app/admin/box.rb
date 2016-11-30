@@ -96,6 +96,13 @@ ActiveAdmin.register Box do
     end
   end
 
+  member_action :edit_box_products do
+    @box = Box.find(params[:'id'])
+    @order_items = @box.order_items
+ 
+    # This will render app/views/admin/posts/comments.html.erb
+  end
+
   
 
 end
