@@ -7,14 +7,14 @@ class OrderItemsController < ApplicationController
   end
 
   def update
+  	@order = current_order
     @order_item = OrderItem.find(params[:id])
+    @order_item.update_attributes(order_item_params)
+    @order_items = @order.order_items
     respond_to do |format|
-      if @order_item.update_attributes(order_item_params)
-        format.html { redirect_to(@order_item, :notice => 'User was successfully updated.') }
-        format.json { respond_with_bip(@order_item) }
-      else
-        format.html { render :action => "edit" }
-        format.json { respond_with_bip(@order_item) }
+      format.html {}
+      format.json do 
+        render json: @order_items
       end
     end
   end
