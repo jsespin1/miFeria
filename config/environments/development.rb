@@ -3,12 +3,13 @@ Rails.application.configure do
 
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.perform_deliveries = true
+  Rails.application.routes.default_url_options[:host] = 'localhost:3000'
   # SMTP settings for gmail
   config.action_mailer.smtp_settings = {
    :address              => "smtp.gmail.com",
    #:user_name            => ENV['GMAIL_USERNAME'],
    #:password             => ENV['GMAIL_PASSWORD'],
-   :user_name            => "js.espinosap@live.com",
+   :user_name            => "miferiadomicilio@gmail.com",
    :password             => "patascortas1",
    :authentication       => "plain",
   :enable_starttls_auto => true
@@ -40,7 +41,7 @@ Rails.application.configure do
   end
 
   # Don't care if the mailer can't send.
-  config.action_mailer.raise_delivery_errors = false
+  config.action_mailer.raise_delivery_errors = true
 
   config.action_mailer.perform_caching = false
 
